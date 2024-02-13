@@ -1,5 +1,6 @@
 import { Artist, ArtistWithoutId } from "../types/artist";
 import * as db from "../db";
+import { ObjectId } from "mongodb";
 
 
 export const all = (): Promise<Artist[]> => {
@@ -11,3 +12,13 @@ export const create = async (artist: ArtistWithoutId): Promise<Artist> => {
   return artist as Artist;
 };
 
+export const findById = (id: string): Promise<Artist | null > => {
+  return db.get().collection("artists").findOne<Artist>({_id: new ObjectId(id)})
+};
+
+export const update = async ( id: string, newData: ArtistWithoutId ): Promise<Artist> => {
+  await db.get().collection("artists").updateOne({ _id: new ObjectId(id) }, { $set: newData});
+  return {
+    ...newData, _id: id,
+  };
+};

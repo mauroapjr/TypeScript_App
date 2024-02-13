@@ -18,3 +18,12 @@ export const create = async ( req: ExpressRequest, res: ExpressResponse, next: N
     next();
   }
 };
+
+export const findById = async ( req: ExpressRequest, res: ExpressResponse, next: NextFunction ) => {
+  try {
+    const doc = await Artists.findById(req.params.id);
+    res.send(doc);
+  } catch (err) {
+    next();
+  }
+};

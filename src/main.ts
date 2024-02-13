@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 const app = express();
 
 app.get("/artists", artistsController.all);
+app.get("/artists/:id", artistsController.findById);
 app.post("/artists", artistsController.create);
 
 app.use(bodyParser.json());
@@ -19,3 +20,4 @@ const startServer = async () => {
 };
 
 startServer();
+
