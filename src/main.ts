@@ -1,7 +1,14 @@
 import  express  from "express";
 import { connect } from "../db";
+import * as artistsController from "../controllers/artists";
+import bodyParser from "body-parser";
 
 const app = express();
+
+app.get("/artists", artistsController.all);
+app.post("/artists", artistsController.create);
+
+app.use(bodyParser.json());
 
 const startServer = async () => {
   await connect("mongodb://localhost:27017/api", "app");

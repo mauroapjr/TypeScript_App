@@ -6,6 +6,15 @@ export const all = async ( _: ExpressRequest, res: ExpressResponse, next: NextFu
     const docs = await Artists.all();
     res.send(docs);
   } catch (err) {
-    next;
+    next();
+  }
+};
+
+export const create = async ( req: ExpressRequest, res: ExpressResponse, next: NextFunction ) => {
+  try {
+    const doc = await Artists.create({ name: req.body.name });
+    res.send(doc);
+  } catch (err) {
+    next();
   }
 };
