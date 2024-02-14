@@ -36,3 +36,12 @@ export const update = async ( req: ExpressRequest, res: ExpressResponse, next: N
     next();
   }
 };
+
+export const deleteById = async ( req: ExpressRequest, res: ExpressResponse, next: NextFunction ) => {
+  try {
+    await Artists.deleteById(req.params.id);
+    res.sendStatus(200);
+  } catch (err) {
+    next();
+  }
+};

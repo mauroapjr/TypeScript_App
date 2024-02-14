@@ -1,6 +1,6 @@
 import { Artist, ArtistWithoutId } from "../types/artist";
 import * as db from "../db";
-import { ObjectId } from "mongodb";
+import { DeleteResult, ObjectId } from "mongodb";
 
 
 export const all = (): Promise<Artist[]> => {
@@ -21,4 +21,8 @@ export const update = async ( id: string, newData: ArtistWithoutId ): Promise<Ar
   return {
     ...newData, _id: id,
   };
+};
+
+export const deleteById = (id: string): Promise<DeleteResult> => {
+  return db.get().collection("artists").deleteOne({ _id: new ObjectId(id) });
 };

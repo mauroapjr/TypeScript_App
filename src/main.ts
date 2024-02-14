@@ -9,6 +9,7 @@ app.get("/artists", artistsController.all);
 app.get("/artists/:id", artistsController.findById);
 app.put("/artists/:id", artistsController.update);
 app.post("/artists", artistsController.create);
+app.delete("/artists/:id", artistsController.deleteById);
 
 app.use(bodyParser.json());
 
