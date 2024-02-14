@@ -7,6 +7,7 @@ const app = express();
 
 app.get("/artists", artistsController.all);
 app.get("/artists/:id", artistsController.findById);
+app.put("/artists/:id", artistsController.update);
 app.post("/artists", artistsController.create);
 
 app.use(bodyParser.json());

@@ -27,3 +27,12 @@ export const findById = async ( req: ExpressRequest, res: ExpressResponse, next:
     next();
   }
 };
+
+export const update = async ( req: ExpressRequest, res: ExpressResponse, next: NextFunction ) => {
+  try {
+    const doc = await Artists.update(req.params.id, { name: req.body.name });
+    res.send(doc);
+  } catch (err) {
+    next();
+  }
+};
