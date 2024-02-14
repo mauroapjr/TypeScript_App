@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Artists API Client</title>
+</head>
+
+<body>
+  <h1>Artists</h1>
+  <div id="artists"></div>
+
+  <script>
+    fetch("http://localhost:3012/artists")
+      .then(response => response.json())
+      .then(data => {
+        const artistsElement = document.getElementById("artists");
+        artistsElement.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+      })
+      .catch(error => console.error('Error dysplaing data', error));
+  </script>
+</body>
+
+</html>
